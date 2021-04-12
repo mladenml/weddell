@@ -7,7 +7,7 @@ defmodule Weddell.Mixfile do
     [
       app: :weddell,
       version: @version,
-      elixir: "~> 1.5",
+      elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -35,8 +35,10 @@ defmodule Weddell.Mixfile do
     [
       # GRPC
       {:protobuf, "~> 0.7"},
-      {:grpc, "~> 0.3"},
-      {:certifi, "~> 2.5"},
+      {:grpc, github: "elixir-grpc/grpc"},
+      # 2.9.0 fixes some important bugs, so it's better to use ~> 2.9.0
+      {:cowlib, "~> 2.9.0", override: true},
+      {:certifi, "~> 2.6"},
 
       # Testing
       {:mox, "~> 0.4", only: :test},
